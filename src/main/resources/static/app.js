@@ -1,8 +1,8 @@
 var stompClient = null;
-hideDataBeforeConnection();
+hideData();
 
-function hideDataBeforeConnection() {
-    $('#user-data').hidden;
+function hideData() {
+    $('#user-data').css('visibility', 'hidden');
 }
 
 function setConnected(connected) {
@@ -10,11 +10,11 @@ function setConnected(connected) {
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#conversation").show();
-        $('#user-data').show();
+        $('#user-data').css('visibility', 'visible');
     }
     else {
         $("#conversation").hide();
-        $('#user-data').hide();
+        $('#user-data').css('visibility', 'hidden');
     }
     $("#greetings").html("");
 }
