@@ -1,13 +1,20 @@
 var stompClient = null;
+hideDataBeforeConnection();
+
+function hideDataBeforeConnection() {
+    $('#user-data').hidden;
+}
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#conversation").show();
+        $('#user-data').show();
     }
     else {
         $("#conversation").hide();
+        $('#user-data').hide();
     }
     $("#greetings").html("");
 }
@@ -33,7 +40,16 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
+    let name = $('#name').val();
+    if (name) {
+        $('#div-name').hide();
+    }
+    stompClient.send("/app/hello", {}, JSON.stringify(
+        {
+            'name': name,
+            'message': $('#message').val()
+        }
+        ));
 }
 
 function showGreeting(message) {
