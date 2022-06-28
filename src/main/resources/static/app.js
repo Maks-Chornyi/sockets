@@ -50,6 +50,7 @@ function sendName() {
             'message': $('#message').val()
         }
         ));
+    $('#message').val('');
 }
 
 function showGreeting(message) {
